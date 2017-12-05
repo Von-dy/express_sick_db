@@ -1,0 +1,93 @@
+extends layout
+block content
+    .main.container
+        .row
+            .panel.panel-default
+                .panel-heading
+                    h1.panel-title
+                        a(data-toggle='collapse', href='#collapse1') Add Match
+                #collapse1.panel-collapse.collapse
+                    .panel-body
+                        // register form
+                        form(method='POST' action='/match/add')
+                            div.form-group
+                                label(for='tourn') Tournament:
+                                input#tourn.form-control(type='text', name='tournament')
+                            div.form-group
+                                label(for='p1') Player One:
+                                input#p1.form-control(type='text' name='p1')
+                            div.form-group
+                                label(for='p2') Player Two:
+                                input#p2.form-control(type='text' name='p2')
+                            div.form-group
+                                label(for='winner') Winner:
+                                input#winner.form-control(type='text', name='winner')
+                            button.btn.btn-primary(type='submit') Add Match
+        .row
+            .panel.panel-default
+                .panel-heading
+                    h1.panel-title
+                        a(data-toggle='collapse', href='#collapse2') Update Match
+                #collapse2.panel-collapse.collapse
+                    .panel-body
+                        form(method='POST' action='/match/update')
+                            div.form-group
+                                label(for='ot') Old Tournament:
+                                input#ot.form-control(type='text', name='oldT')
+                            div.form-group
+                                label(for='op1') Old Player One:
+                                input#op1.form-control(type='text', name='oldp1')
+                            div.form-group
+                                label(for='op2') Old Player Two:
+                                input#op2.form-control(type='text', name='oldp2')
+                            div.form-group
+                                label(for='ow') Old Winner:
+                                input#ow.form-control(type='text', name='ow')
+                            div.form-group
+                                label(for='nt') New Tournament:
+                                input#nt.form-control(type='text', name='newT')
+                            div.form-group
+                                label(for='np1') New Player One:
+                                input#np1.form-control(type='text', name='newp1')
+                            div.form-group
+                                label(for='np2') New Player Two:
+                                input#np2.form-control(type='text', name='newp2')
+                            div.form-group
+                                label(for='nw') New Winner:
+                                input#nw.form-control(type='text', name='nw')
+
+                            button.btn.btn-primary(type='submit') Update Match
+        .row
+            .panel.panel-default
+                .panel-heading
+                    h1.panel-title
+                        a(data-toggle='collapse', href='#collapse3') Delete Match
+                #collapse3.panel-collapse.collapse
+                    .panel-body
+                        // register form
+                        form(method='POST' action='/match/remove')
+                            div.form-group
+                                label(for='tournd') Tournament:
+                                input#tournd.form-control(type='text', name='tournament')
+                            div.form-group
+                                label(for='winnerd') Winner:
+                                input#winnerd.form-control(type='text', name='winner')
+                            button.btn.btn-primary(type='submit') Delete Match
+        .row
+            .panel.panel-default
+                .panel-heading
+                    h1.panel-title
+                        a(data-toggle='collapse', href='#collapse4') Match Queries
+                #collapse4.panel-collapse.collapse
+                    .panel-body
+                        form(method='GET' action='/match/all')
+                            button.btn.btn-primary(type='submit') Find All Matches
+                    .panel-body
+                        form(method='POST' action='/match/count')
+                            div.form-group
+                                label(for='cw') Player:
+                                input#cw.form-control(type='text', name='winner')
+                            button.btn.btn-primary(type='submit') Find All Matches won by player
+                    .panel-body
+                        form(method='POST' action='/match/countAll')
+                            button.btn.btn-primary(type='submit') Find All Matches won by all players

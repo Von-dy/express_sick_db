@@ -1,0 +1,58 @@
+extends layout
+block content
+    .main.container
+        .row
+            .panel.panel-default
+                .panel-heading
+                    h1.panel-title
+                        a(data-toggle='collapse', href='#collapse1') Add Player
+                #collapse1.panel-collapse.collapse
+                    .panel-body
+                        // register form
+                        form(method='POST' action='/player/add')
+                            div.form-group
+                                label(for='gtag') Gamertag:
+                                input#gtag.form-control(type='text', name='gamertag')
+                            button.btn.btn-primary(type='submit') Add Player
+        .row
+            .panel.panel-default
+                .panel-heading
+                    h1.panel-title
+                        a(data-toggle='collapse', href='#collapse2') Update Player
+                #collapse2.panel-collapse.collapse
+                    .panel-body
+                        form(method='POST' action='/player/update')
+                            div.form-group
+                                label(for='ogtag') Old Gamertag:
+                                input#ogtag.form-control(type='text', name='oldGamertag')
+                            div.form-group
+                                label(for='nugtag') New Gamertag:
+                                input#nugtag.form-control(type='text', name='newGamertag')
+                            button.btn.btn-primary(type='submit') Update Player
+        .row
+            .panel.panel-default
+                .panel-heading
+                    h1.panel-title
+                        a(data-toggle='collapse', href='#collapse3') Remove Player
+                #collapse3.panel-collapse.collapse
+                    .panel-body
+                        form(method='POST' action='/player/remove')
+                            div.form-group
+                                label(for='gtagr') Gamertag:
+                                input#gtagr.form-control(type='text', name='gamertag')
+                            button.btn.btn-primary(type='submit') Remove Player
+        .row
+            .panel.panel-default
+                .panel-heading
+                    h1.panel-title
+                        a(data-toggle='collapse', href='#collapse4') Player Queries
+                #collapse4.panel-collapse.collapse
+                    .panel-body
+                        form(method='GET' action='/player/all')
+                            button.btn.btn-primary(type='submit') Find All Players
+                    .panel-body
+                        form(method='POST' action='/player/findOne')
+                            div.form-group
+                                label(for='gamertagf') Gamertag:
+                                input#gamertagf.form-control(type='text', name='gamertag')
+                            button.btn.btn-primary(type='submit') Find Player

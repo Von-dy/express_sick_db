@@ -1,0 +1,137 @@
+extends layout
+
+block content
+    .main.container
+        .row
+            .panel.panel-default
+                .panel-heading
+                    h1.panel-title
+                        a(data-toggle='collapse', href='#collapse1') Add Tournament
+                #collapse1.panel-collapse.collapse
+                    .panel-body
+                        // register form
+                        form(method='POST' action='/tournament/add')
+                            div.form-group
+                                label(for='name') Name:
+                                input#name.form-control(type='text', name='name')
+                            div.form-group
+                                label(for='date') Date:
+                                input#date.form-control(type='text' name='date')
+                            div.form-group
+                                label(for='year') Year:
+                                input#year.form-control(type='text' name='year')
+                            div.form-group
+                                label(for='location') Location:
+                                input#location.form-control(type='text', name='location')
+                            div.form-group
+                                label(for='placements') Placements:
+                                input#placements.form-control(type='text', name='placements', placeholder='Order by Place and Comma Separated')
+                            button.btn.btn-primary(type='submit') Add Tournament
+        .row
+            .panel.panel-default
+                .panel-heading
+                    h1.panel-title
+                        a(data-toggle='collapse', href='#collapse2') Update Tournament
+                #collapse2.panel-collapse.collapse
+                    .panel-body
+                        // register form
+                        form(method='POST' action='/tournament/update')
+                            div.form-group
+                                label(for='oname') Old Name:
+                                input#oname.form-control(type='text', name='oname')
+                            div.form-group
+                                label(for='newName') New Name:
+                                input#newName.form-control(type='text' name='newName')
+                            div.form-group
+                                label(for='newDate') Date:
+                                input#newDate.form-control(type='text' name='nDate')
+                            div.form-group
+                                label(for='nYear') Year:
+                                input#nYear.form-control(type='text', name='nYear')
+                            div.form-group
+                                label(for='nLoc') Location:
+                                input#nLoc.form-control(type='text', name='nLoc')
+                            button.btn.btn-primary(type='submit') Update Tournament
+        .row
+            .panel.panel-default
+                .panel-heading
+                    h1.panel-title
+                        a(data-toggle='collapse', href='#collapse3') Remove Tournament
+                #collapse3.panel-collapse.collapse
+                    .panel-body
+                        // register form
+                        form(method='POST' action='/tournament/remove')
+                            div.form-group
+                                label(for='dname') Name:
+                                input#dname.form-control(type='text', name='name')
+                            button.btn.btn-primary(type='submit') Delete Tournament
+
+        .row
+            .panel.panel-default
+                .panel-heading
+                    h1.panel-title
+                        a(data-toggle='collapse', href='#collapse4') Tournament Queries
+                #collapse4.panel-collapse.collapse
+                    .panel-body
+                        form(method='GET' action='/tournament/all')
+                            button.btn.btn-primary(type='submit') Find All
+                    .panel-body
+                        form(method='POST' action='/tournament/findMatches')
+                            div.form-group
+                                label(for='tname') Name:
+                                input#tname.form-control(type='text', name='name')
+                            button.btn.btn-primary(type='submit') Find matches for this tournament
+                         //   if data
+                                ul
+                                    each d in data
+                                        li= d
+                        //if chart_data
+                            cd#chart_data=data
+                            canvas#myChart(width='400', height='400')
+                                script.
+                                    var ctx = document.getElementById("myChart").getContext('2d');
+                                    var chart_data = document.getElementById("chart_data");
+                                    var myChart = new Chart(ctx, {
+                                        type: 'bar',
+                                        data: {
+                                            labels: "#{labels}",
+                                            datasets: [{
+                                                label: '# of Votes',
+                                                data: chart_data,
+                                                backgroundColor: [
+                                                    'rgba(255, 99, 132, 0.2)',
+                                                    'rgba(54, 162, 235, 0.2)',
+                                                    'rgba(255, 206, 86, 0.2)',
+                                                    'rgba(75, 192, 192, 0.2)',
+                                                    'rgba(153, 102, 255, 0.2)',
+                                                    'rgba(255, 159, 64, 0.2)',
+                                                    'rgba(255, 159, 64, 0.2)',
+                                                    'rgba(255, 159, 64, 0.2)',
+                                                    'rgba(255, 159, 64, 0.2)',
+                                                    'rgba(255, 159, 64, 0.2)'
+                                                ],
+                                                borderColor: [
+                                                    'rgba(255,99,132,1)',
+                                                    'rgba(54, 162, 235, 1)',
+                                                    'rgba(255, 206, 86, 1)',
+                                                    'rgba(75, 192, 192, 1)',
+                                                    'rgba(153, 102, 255, 1)',
+                                                    'rgba(255, 159, 64, 1)',
+                                                    'rgba(255, 159, 64, 1)',
+                                                    'rgba(255, 159, 64, 1)',
+                                                    'rgba(255, 159, 64, 1)',
+                                                    'rgba(255, 159, 64, 1)'
+                                                ],
+                                                borderWidth: 1
+                                            }]
+                                        },
+                                        options: {
+                                            scales: {
+                                                yAxes: [{
+                                                    ticks: {
+                                                        beginAtZero: true
+                                                    }
+                                                }]
+                                            }
+                                        }
+                                    });//
